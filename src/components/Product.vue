@@ -1,37 +1,34 @@
 <template>
- <v-row>
-    <p v-for="items in product" :key="items.id">
-    <v-col cols="12" md="4">
-      <v-card>
-        <v-card-item>
-          <v-card-title>{{items.title}}</v-card-title>
-
-          <v-card-subtitle>{{items.price}}</v-card-subtitle>
-        </v-card-item>
-
-        <v-card-text>
-        {{items.description}}
-        </v-card-text>
+  <v-container>
+    <v-row>
+      <v-col v-for="item in products" :key="item.id"
+      cols="12"
+      md="4"
+      class="d-flex">
+      <v-card class="mx-auto">
+        <v-img :src="item.image"
+        height="200px"
+        contain></v-img>
+        <v-card-title>{{ item.title }}</v-card-title>
+        <v-card-subtitle>${{ item.price }}</v-card-subtitle>
+        <!-- <v-card-text>{{ item.description }}</v-card-text> -->
+        <v-btn>Add to Cart</v-btn>
       </v-card>
 
-      <div class="text-center text-caption">{{items.rating.rate}}</div>
-    </v-col>
-    </p>
-  </v-row>  
-<ul>
-  <li>
-  
-  
-  </li>
-</ul>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 <script setup>
-import { onMounted, ref } from "vue";
-
-const product =ref([]);
-onMounted(async()=>{
-  const response = await fetch ('https://fakestoreapi.com/products');
-  product.value=await response.json();
-  console.log("product detail:",product.value)
+import { onMounted,computed } from "vue";
+import { useStore } from 'vuex';
+const store = useStore();
+const products =computed(()=>{
+ return store.state.product.products;
 })
+onMounted(() => {
+ store.dispatch("fetchProducts");
+ console.log("products:",store.state.product.products);
+});
+
 </script>

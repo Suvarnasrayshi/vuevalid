@@ -4,9 +4,9 @@ import { mutations } from './mutations'
 import { state } from './state'
 
 
-export const product = {
-  state,
-  getters,
+export const product ={
   actions,
+  getters,
   mutations,
+  state
 }

@@ -1,6 +1,5 @@
 export const state ={
-
-    fname:'',
-    email:''
+    user: '',
+    token: '',
   
 }
