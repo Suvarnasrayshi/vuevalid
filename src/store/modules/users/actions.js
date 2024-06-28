@@ -9,15 +9,16 @@ async login({commit},{username,password}){
         body:JSON.stringify({username,password}),
       });
       if(response.ok){
-        console.log("login successful");
+        const login=await response.json();
+        commit('setUser',login.username)
+        commit('setToken',login.token);    
+        document.cookie = `token=${login.token};secure `;
+        console.log("login successful and has been set successful");
       }else{
         console.log("error in login!!!!");
       }
-      const login=await response.json();
-      commit('setUser',login.username)
   }
   catch(error){
     console.error("error",error)
   }
-}
-}
+}}

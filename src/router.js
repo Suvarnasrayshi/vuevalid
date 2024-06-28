@@ -1,8 +1,8 @@
 import { createRouter,createWebHistory } from "vue-router";
 import Login from './components/Login.vue'
 import Product from './components/Product.vue'
-import Categrory from './components/Category.vue'
 import catproduct from './components/catproduct.vue'
+import cart from './components/cart.vue'
 import PageNotFound from './components/PageNotFound.vue'
 const routes = [
   {
@@ -16,14 +16,14 @@ const routes = [
     component: Product
   },
   {
-    name:'Categrory',
-    path: '/category',
-    component: Categrory
-  },
-  {
     name:'catproduct',
     path: '/catproduct',
     component: catproduct
+  },
+  {
+    name:'cart',
+    path: '/cart',
+    component: cart
   },
   {
     name:'pagenotfound',
